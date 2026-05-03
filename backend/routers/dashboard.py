@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
-from backend.database import get_db, Patient, Doctor, CheckIn, RiskScore, Alert, Todo, HealthReport
+from database import get_db, Patient, Doctor, CheckIn, RiskScore, Alert, Todo, HealthReport
 from typing import List
 import json
 from datetime import datetime, timedelta

@@ -7,8 +7,8 @@ import re
 import base64
 import os as os_module
 from datetime import datetime
-from backend.database import get_db, CheckIn, RiskScore, Patient, HealthReport
-from backend.ml_engine import predict_risks
+from database import get_db, CheckIn, RiskScore, Patient, HealthReport
+from ml_engine import predict_risks
 
 router = APIRouter(prefix="/api/ingest", tags=["ingest"])
 

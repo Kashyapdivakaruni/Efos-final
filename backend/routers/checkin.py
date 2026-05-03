@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.database import get_db, Patient, CheckIn, RiskScore, HealthReport, Alert, Todo, Doctor
-from backend.schemas import CheckInRequest, WhatIfRequest
-from backend.ml_engine import predict_risks, get_specialist_recommendations, predict_health_trajectory
-from backend.rules_engine import evaluate_rules, generate_todos
-from backend.ollama_service import generate_health_report
+from database import get_db, Patient, CheckIn, RiskScore, HealthReport, Alert, Todo, Doctor
+from schemas import CheckInRequest, WhatIfRequest
+from ml_engine import predict_risks, get_specialist_recommendations, predict_health_trajectory
+from rules_engine import evaluate_rules, generate_todos
+from ollama_service import generate_health_report
 import json
 from datetime import datetime
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from backend.database import get_db, Doctor, Appointment, Patient
+from database import get_db, Doctor, Appointment, Patient
 from datetime import datetime
 
 router = APIRouter(prefix="/api/doctors", tags=["doctors"])

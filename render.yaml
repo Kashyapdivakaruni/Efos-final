@@ -1,25 +1,25 @@
 services:
   - type: web
-    name: predihealth-backend
-    runtime: docker
-    dockerfilePath: ./Dockerfile
+    name: predihealth-api
+    runtime: python-3.11
+    buildCommand: "pip install -r backend/requirements.txt && cd backend && python train_models.py"
+    startCommand: "cd backend && gunicorn -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT main:app"
+    repo: https://github.com/Kashyapdivakaruni/Efos-final
     region: oregon
     plan: free
     envVars:
       - key: FRONTEND_URL
-        value: https://predihealth-frontend.onrender.com
-      - key: DATABASE_URL
-        scope: build
-    buildCommand: echo "Building Docker image"
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+        value: https://predihealth-frontend.vercel.app
+      - key: PYTHONDONTWRITEBYTECODE
+        value: "1"
+      - key: PYTHONUNBUFFERED
+        value: "1"
 
   - type: static_site
     name: predihealth-frontend
-    runtime: node
-    buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
-    region: oregon
-    plan: free
+    buildCommand: "cd frontend && npm install && npm run build"
+    repo: https://github.com/Kashyapdivakaruni/Efos-final
     envVars:
       - key: VITE_API_URL
-        value: https://predihealth-backend.onrender.com/api
+        value: https://predihealth-api.onrender.com/api

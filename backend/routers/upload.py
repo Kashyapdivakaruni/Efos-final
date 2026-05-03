@@ -4,8 +4,8 @@ import pdfplumber
 import io
 import json
 
-from backend.database import get_db, Patient, CheckIn
-from backend.ollama_service import extract_metrics_from_text
+from database import get_db, Patient, CheckIn
+from ollama_service import extract_metrics_from_text
 
 router = APIRouter(prefix="/api/upload", tags=["upload"])
 

@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from datetime import timedelta
 from jose import jwt
 from passlib.context import CryptContext
-from backend.database import get_db, Patient, Doctor
-from backend.schemas import LoginRequest, PatientRegister, DoctorRegister, TokenResponse
+from database import get_db, Patient, Doctor
+from schemas import LoginRequest, PatientRegister, DoctorRegister, TokenResponse
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

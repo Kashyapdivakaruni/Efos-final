@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
-from backend.database import get_db, Patient, CheckIn, RiskScore
-from backend.schemas import ChatRequest
-from backend.ollama_service import chat_with_patient
+from database import get_db, Patient, CheckIn, RiskScore
+from schemas import ChatRequest
+from ollama_service import chat_with_patient
 import json
 
 router = APIRouter(prefix="/api", tags=["chatbot"])
