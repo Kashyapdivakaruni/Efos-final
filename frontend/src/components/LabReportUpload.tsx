@@ -70,14 +70,14 @@ export function LabReportUpload() {
       const patientId = user.id
       console.log(`Uploading to patient ${patientId}`)
       
-      // Build URL
-      const baseUrl = 'http://localhost:8000' 
+      // Build URL - use environment variable for API
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
       const endpoint = `/api/ingest/report`
       const params = `?patient_id=${patientId}`
-      const fullUrl = baseUrl + endpoint + params
+      const fullUrl = apiUrl + endpoint + params
       
       console.log('Full URL:', fullUrl)
-      console.log('axios baseURL:', axios.defaults.baseURL)
+      console.log('API Base:', apiUrl)
       
       // Make request
       const response = await axios.post(fullUrl, formData, {

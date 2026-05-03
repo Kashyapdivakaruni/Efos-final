@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 
+// Set API base URL - supports both development and production
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+axios.defaults.baseURL = API_BASE_URL
+
 interface User {
   id: number
   name: string
@@ -33,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [user])
 
   const login = async (email: string, password: string, role: string) => {
-    const res = await axios.post('/api/auth/login', { email, password, role })
+    const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password, role })
     const u: User = {
       id: res.data.user_id,
       name: res.data.name,
