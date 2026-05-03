@@ -49,16 +49,9 @@ async def startup_event():
     print("[START] PrediHealth API starting up...")
     try:
         Base.metadata.create_all(bind=engine)
-        db = SessionLocal()
-        try:
-            seed_database(db)
-            print("[SEED] Demo data loaded successfully")
-        except Exception as e:
-            print(f"[SEED WARNING] Could not seed database: {e}")
-        finally:
-            db.close()
+        print("[DB] Database tables created")
     except Exception as e:
-        print(f"[STARTUP ERROR] {e}")
+        print(f"[DB ERROR] {e}")
     
     print("[READY] PrediHealth API ready!")
 
