@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: predihealth-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    envVars:
+      - key: FRONTEND_URL
+        value: https://predihealth-frontend.onrender.com
+      - key: DATABASE_URL
+        scope: build
+    buildCommand: echo "Building Docker image"
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  - type: static_site
+    name: predihealth-frontend
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    region: oregon
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        value: https://predihealth-backend.onrender.com/api
