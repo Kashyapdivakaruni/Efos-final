@@ -47,21 +47,19 @@ app.include_router(upload.router)
 @app.on_event("startup")
 async def startup_event():
     print("[START] PrediHealth API starting up...")
-    Base.metadata.create_all(bind=engine)
-
-    db = SessionLocal()
     try:
-        seed_database(db)
-    finally:
-        db.close()
-
-    # Pre-load ML models
-    try:
-        from backend.ml_engine import get_models
-        get_models()
+        Base.metadata.create_all(bind=engine)
+        db = SessionLocal()
+        try:
+            seed_database(db)
+            print("[SEED] Demo data loaded successfully")
+        except Exception as e:
+            print(f"[SEED WARNING] Could not seed database: {e}")
+        finally:
+            db.close()
     except Exception as e:
-        print(f"⚠️  ML models not loaded yet: {e}")
-
+        print(f"[STARTUP ERROR] {e}")
+    
     print("[READY] PrediHealth API ready!")
 
 
