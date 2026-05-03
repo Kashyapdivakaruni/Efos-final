@@ -2,14 +2,14 @@ services:
   - type: web
     name: predihealth-api
     runtime: python-3.11
-    buildCommand: "pip install --upgrade pip setuptools wheel && pip install --prefer-binary -r backend/requirements.txt"
+    buildCommand: "pip install --prefer-binary -r backend/requirements.txt"
     startCommand: "cd backend && gunicorn -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT main:app"
     repo: https://github.com/Kashyapdivakaruni/Efos-final
     region: oregon
     plan: free
     envVars:
       - key: FRONTEND_URL
-        value: https://predihealth-frontend.vercel.app
+        value: https://efos-final-gytx.vercel.app
       - key: PYTHONDONTWRITEBYTECODE
         value: "1"
       - key: PYTHONUNBUFFERED
@@ -22,4 +22,4 @@ services:
     repo: https://github.com/Kashyapdivakaruni/Efos-final
     envVars:
       - key: VITE_API_URL
-        value: https://predihealth-api.onrender.com/api
+        value: https://predihealth-apii.onrender.com/api
