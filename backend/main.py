@@ -1,8 +1,14 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.database import Base, engine, SessionLocal, seed_database
-from backend.routers import auth, checkin, dashboard, chatbot, ingest, doctor, upload
+try:
+    # Docker/Production environment
+    from database import Base, engine, SessionLocal, seed_database
+    from routers import auth, checkin, dashboard, chatbot, ingest, doctor, upload
+except ImportError:
+    # Local development environment
+    from backend.database import Base, engine, SessionLocal, seed_database
+    from backend.routers import auth, checkin, dashboard, chatbot, ingest, doctor, upload
 
 app = FastAPI(
     title="PrediHealth API",

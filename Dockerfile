@@ -18,6 +18,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy entire backend
 COPY backend/ .
 
+# Copy root level files needed for imports
+COPY backend/ /app/backend
+
+# Add current directory and backend to Python path
+ENV PYTHONPATH=/app:/app/backend:$PYTHONPATH
+
 # Expose port
 EXPOSE 8000
 
