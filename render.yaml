@@ -1,13 +1,11 @@
 services:
   - type: web
     name: predihealth-backend
-    runtime: python
+    env: python
     plan: free
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port 8000
     envVars:
       - key: SECRET_KEY
-        value: predihealth_secret_key_2026_secure_deployment
-      - key: FRONTEND_URL
-        value: https://predihealth-frontend.vercel.app
+        value: predihealth_production_secret_key_2026
+

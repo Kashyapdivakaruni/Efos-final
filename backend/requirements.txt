@@ -18,7 +18,6 @@ aiofiles==23.2.1
 httpx==0.25.2
 email-validator==2.1.0
 python-dotenv==1.0.0
-Pillow==10.1.0
-pytesseract>=0.3.10
-pdfplumber==0.10.0
-google-cloud-vision==3.4.4
+Pillow>=10.0.0
+pdfplumber>=0.10.0
+requests>=2.31.0
