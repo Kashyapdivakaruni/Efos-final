@@ -73,7 +73,7 @@ class RiskScoreOut(BaseModel):
     timestamp: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class CheckInOut(BaseModel):
@@ -89,7 +89,7 @@ class CheckInOut(BaseModel):
     risk_score: Optional[RiskScoreOut] = None
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class AlertOut(BaseModel):
@@ -102,7 +102,7 @@ class AlertOut(BaseModel):
     timestamp: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class TodoOut(BaseModel):
@@ -113,7 +113,7 @@ class TodoOut(BaseModel):
     created_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class PatientSummary(BaseModel):
@@ -126,7 +126,7 @@ class PatientSummary(BaseModel):
     unread_alerts: int = 0
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class TokenResponse(BaseModel):
